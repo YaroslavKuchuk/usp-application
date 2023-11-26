@@ -15,4 +15,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Usp.Api.Data\Usp.Api.Data.csproj" />
+    <ProjectReference Include="..\Usp.Models\Usp.Models.csproj" />
+  </ItemGroup>
+
 </Project>

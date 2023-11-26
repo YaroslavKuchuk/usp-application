@@ -3,10 +3,10 @@ using Usp.Api.Data.Repositories.Abstractions;
 
 namespace Usp.Api.Data.Repositories
 {
-    public class SellingRepository : ISellingPointRepository
+    public class SellingPointRepository : ISellingPointRepository
     {
         private readonly UspContext _uspContext;
-        public SellingRepository()
+        public SellingPointRepository()
         {
         }
 
