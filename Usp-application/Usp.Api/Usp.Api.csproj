@@ -21,4 +21,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Usp.Api.BusinessLogic\Usp.Api.BusinessLogic.csproj" />
+    <ProjectReference Include="..\Usp.Api.Data\Usp.Api.Data.csproj" />
+    <ProjectReference Include="..\Usp.Models\Usp.Models.csproj" />
+  </ItemGroup>
+
 </Project>
