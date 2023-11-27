@@ -1,24 +1,32 @@
 ﻿@using Usp.Models
 @rendermode InteractiveServer
 
-<div class="tariff" @onclick="Clicked" style="border-color: @BorderColor">
-    <h1>@Model.Name </h1>
-    <h2>@Model.Header</h2>
-    <h3>@Model.Description</h3>
-    <h2>@Model.Price</h2>
-    <ul>
-    @foreach (var property in Model.Properties)
+<div class="@CssClass" @onclick="Clicked" style="border-color: @BorderColor">
+    <h3>@Model.Name </h3>    
+    <div class="@TextAlignCss">
+        <p class="price-text">@Model.Price kr</p>
+        <p>@Model.Header</p>   
+    </div>
+    <p class="tariff-description">@Model.Description</p>
+    <ul class="ul-style">
+        @foreach (var property in Model.Properties.OrderBy(p => p))
         {
-            <li>@property</li>
+            <li><div class="li-checked">V </div> @property</li>
         }
     </ul>
 </div>
 
-@code {    
+@code {
     private bool _selected = false;
 
     [Parameter]
     public SellingPointViewModel Model { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public string TextAlignCss { get; set; }
 
     public string BorderColor
     {
@@ -26,7 +34,7 @@
         {
             return _selected ? "black" : "white";
         }
-    }    
+    }
 
     private async Task Clicked()
     {

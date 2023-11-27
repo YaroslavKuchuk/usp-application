@@ -6,28 +6,21 @@
 @inject ISellingPointService SellingPointService;
 
 <div class="row">
-    <div class="column-single">
-        @if (_sellingPoints != null)
-        {
-            @foreach (var sellingPoint in _sellingPoints.Where(s => s.IsPrimary == true))
-            {
-                <Tariff Model="sellingPoint" OnTariffSelected="Selected"></Tariff>
-            }
-        }
-    </div>
-    <div class="column-right">
-        <Results Models="_selectedPoints" />
-    </div>
-</div>
-
-<div class="row">
     <div class="column-left">
         @if (_sellingPoints != null)
         {
-            @foreach (var sellingPoint in _sellingPoints)
-            {
-                <Tariff Model="sellingPoint" OnTariffSelected="Selected"></Tariff>
-            }
+            <div>
+                @foreach (var sellingPoint in _sellingPoints.Where(s => s.IsPrimary == true))
+                {
+                    <Tariff TextAlignCss="right-align-text" CssClass="primary-tariff" Model="sellingPoint" OnTariffSelected="Selected"></Tariff>
+                }
+            </div>
+            <div>
+                @foreach (var sellingPoint in _sellingPoints.Where(s => s.IsPrimary == false))
+                {
+                    <Tariff TextAlignCss="left-align-text" CssClass="tariff" Model="sellingPoint" OnTariffSelected="Selected"></Tariff>
+                }
+            </div>
         }
     </div>
     <div class="column-right">
