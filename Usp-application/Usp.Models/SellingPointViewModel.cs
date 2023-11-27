@@ -13,6 +13,8 @@ namespace Usp.Models
 
         public decimal Price { get; set; }
 
+        public bool? IsPrimary { get; set; }
+
         public IList<string> Properties { get; set; }
     }
 }

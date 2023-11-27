@@ -13,6 +13,8 @@ public partial class SellingPoint
 
     public string? Description { get; set; }
 
+    public bool? IsPrimary { get; set; }
+
     public virtual ICollection<SellingPointPrice> SellingPointPrices { get; set; } = new List<SellingPointPrice>();
 
     public virtual ICollection<SellingPointProperty> SellingPointProperties { get; set; } = new List<SellingPointProperty>();
