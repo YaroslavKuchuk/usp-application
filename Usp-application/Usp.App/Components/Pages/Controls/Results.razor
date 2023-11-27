@@ -1,24 +1,40 @@
 ﻿@using Usp.Models
 @rendermode InteractiveServer
 
-<h4>Hwar mange medaybejdere har du i din virksomhed?</h4>
+<div class="bottom-indent">
+    <h4>Hwar mange medaybejdere har du i din virksomhed?</h4>
+</div>
 
-<input type="range" min="1" max="500" step="1" @bind="_employeesAmount" @onclick="EmployeeAmountCHanged"/>
-<label>@_employeesAmount medarbejdere</label>
+<input type="range" min="1" max="500" step="1" @bind="_employeesAmount" @onclick="EmployeeAmountCHanged" />
 
-<b>Borogn din pris</b>
+<div class="bottom-indent">
+    <label>@_employeesAmount medarbejdere</label>
+</div>
 
-@foreach (var model in Models)
-{
-    <div style="border 2px solid color: black">
-        <b>@model.Name</b>
-        <i>@model.Price  kr/md</i>
-    </div><br>    
-}
+<div class="bottom-indent">
+    <h4><b>Borogn din pris</b></h4>
+</div>
+
+<div class="selected-products-height">
+    @foreach (var model in Models)
+    {
+        <div style="border 2px solid color: black">
+            <b>@model.Name</b>
+            <i>@model.Price  kr/md</i>
+        </div>
+        <br>
+    }
+</div>
 
 <h3>Din Pris</h3>
-<p>Pr. medarbejder @_amountPerEmployee</p>
-<p>I alt @_total</p>
+<div>
+    <div class="item text-length">Pr. medarbejder</div>
+    <div class="price-text-results item">@_amountPerEmployee</div>
+</div>
+<div>
+    <div class="item text-length">I alt</div>
+    <div class="price-text-results item">@_total</div>
+</div>
 
 @code {
     private int _employeesAmount;
@@ -29,11 +45,12 @@
     private List<SellingPointViewModel> _sellingPoints;
 
     [Parameter]
-    public List<SellingPointViewModel> Models { 
+    public List<SellingPointViewModel> Models
+    {
         get
         {
             return _sellingPoints;
-        } 
+        }
         set
         {
             _sellingPoints = value;

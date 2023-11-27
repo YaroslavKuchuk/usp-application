@@ -40,6 +40,14 @@
     font-size: 30px;
 }
 
+.price-text-results {
+    font-weight: bold;
+    font-size: 18px;
+    vertical-align: bottom;
+    text-align: right;
+    width: 50%;
+}
+
 .li-checked{
     color: red;
     font-weight: bold;
@@ -53,4 +61,20 @@
 
 .tariff-description {
     font-size: 12px;
+}
+
+.bottom-indent{
+    margin-bottom: 20px;
+}
+
+.item {
+    display: inline-block;
+}
+
+.text-length{
+    width: 150px;
+}
+
+.selected-products-height{
+    height: 150px;
 }
