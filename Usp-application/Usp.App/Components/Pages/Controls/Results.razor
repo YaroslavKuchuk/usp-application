@@ -1,14 +1,59 @@
 ﻿@using Usp.Models
+@rendermode InteractiveServer
+
+<h4>Hwar mange medaybejdere har du i din virksomhed?</h4>
+
+<input type="range" min="1" max="500" step="1" @bind="_employeesAmount" @onclick="EmployeeAmountCHanged"/>
+<label>@_employeesAmount medarbejdere</label>
+
+<b>Borogn din pris</b>
 
 @foreach (var model in Models)
 {
-    <label style="border 2px solid color: black">
-        @model.Name
-    </label><br>
-    
+    <div style="border 2px solid color: black">
+        <b>@model.Name</b>
+        <i>@model.Price  kr/md</i>
+    </div><br>    
 }
 
+<h3>Din Pris</h3>
+<p>Pr. medarbejder @_amountPerEmployee</p>
+<p>I alt @_total</p>
+
 @code {
+    private int _employeesAmount;
+
+    private decimal _amountPerEmployee;
+    private decimal _total;
+
+    private List<SellingPointViewModel> _sellingPoints;
+
     [Parameter]
-    public List<SellingPointViewModel> Models { get; set; }
+    public List<SellingPointViewModel> Models { 
+        get
+        {
+            return _sellingPoints;
+        } 
+        set
+        {
+            _sellingPoints = value;
+            RecalculateTotals();
+        }
+    }
+
+    private void EmployeeAmountCHanged()
+    {
+        if (Models is null || !Models.Any())
+        {
+            return;
+        }
+
+        RecalculateTotals();
+    }
+
+    private void RecalculateTotals()
+    {
+        _amountPerEmployee = Models.Sum(m => m.Price);
+        _total = _amountPerEmployee * _employeesAmount;
+    }
 }
