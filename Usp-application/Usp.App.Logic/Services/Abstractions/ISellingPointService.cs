@@ -1,10 +1,9 @@
-﻿
-using Usp.Models;
+﻿using Usp.Models;
 
 namespace Usp.App.Logic.Services.Abstractions
 {
     public interface ISellingPointService
     {
-        Task<IList<SellingPointViewModel>> GetSellingPoints();
+        Task<List<SellingPointViewModel>> GetSellingPoints();
     }
 }

@@ -1,5 +1,40 @@
-﻿<h3>Tariff</h3>
+﻿@using Usp.Models
+@rendermode InteractiveServer
 
-@code {
+<div @onclick="Clicked" style="border: 2px solid @BorderColor">
+    <h1>@Model.Name </h1>
+    <h2>@Model.Header</h2>
+    <h3>@Model.Description</h3>
+    <h2>@Model.Price</h2>
+    <ul>
+    @foreach (var property in Model.Properties)
+        {
+            <li>@property</li>
+        }
+    </ul>
+</div>
 
+@code {    
+    private bool _selected = false;
+
+    [Parameter]
+    public SellingPointViewModel Model { get; set; }
+
+    public string BorderColor
+    {
+        get
+        {
+            return _selected ? "black" : "white";
+        }
+    }    
+
+    private async Task Clicked()
+    {
+        _selected = !_selected;
+
+        await OnTariffSelected.InvokeAsync(Model);
+    }
+
+    [Parameter]
+    public EventCallback<SellingPointViewModel> OnTariffSelected { get; set; }
 }

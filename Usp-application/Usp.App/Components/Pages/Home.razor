@@ -1,17 +1,42 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @using Usp.App.Logic.Services.Abstractions
+@using Usp.Models
+@using Usp.App.Components.Pages.Controls
 @inject ISellingPointService SellingPointService;
 
-<PageTitle>Home</PageTitle>
-
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+    <div>
+        @if (_sellingPoints != null)
+        {
+            @foreach (var sellingPoint in _sellingPoints)
+            {
+                <Tariff Model="sellingPoint" OnTariffSelected="Selected"></Tariff>
+            }
+        }
+    </div>
+    <div><Results Models="_selectedPoints" /></div>
 
 @code
 {
-    protected override void OnInitialized()
+    private List<SellingPointViewModel> _sellingPoints;
+    private List<SellingPointViewModel> _selectedPoints = new List<SellingPointViewModel>();
+
+    protected override async Task OnInitializedAsync()
     {
-        var res = SellingPointService.GetSellingPoints();
+        _sellingPoints = await SellingPointService.GetSellingPoints();
+    }
+
+    private void Selected(SellingPointViewModel model)
+    {
+        var modelInList = _selectedPoints.FirstOrDefault(m => m.Id == model.Id);
+
+        if (modelInList != null)
+        {
+            _selectedPoints.Remove(modelInList);
+        }
+        else if (modelInList is null)
+        {
+            _selectedPoints.Add(model);
+        }
     }
 }
