@@ -12,7 +12,10 @@ namespace Usp.Api.BusinessLogic.Extensions
 
             var model = new SellingPointViewModel();
 
+            model.Id = sellingPoint.Id;
             model.Name = sellingPoint.Name;
+            model.Description = sellingPoint.Description;
+            model.Header = sellingPoint.Header;
             model.Price
                 = sellingPoint.SellingPointPrices.SingleOrDefault(s => !s.EndDate.HasValue)?.Price ?? 0;
 

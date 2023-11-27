@@ -1,5 +1,14 @@
-﻿<h3>Results</h3>
+﻿@using Usp.Models
+
+@foreach (var model in Models)
+{
+    <label style="border 2px solid color: black">
+        @model.Name
+    </label><br>
+    
+}
 
 @code {
-
+    [Parameter]
+    public List<SellingPointViewModel> Models { get; set; }
 }

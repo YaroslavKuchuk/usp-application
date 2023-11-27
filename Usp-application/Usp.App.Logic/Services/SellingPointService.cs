@@ -14,7 +14,7 @@ namespace Usp.App.Logic.Services
             _httpClient = httpClientFactory.CreateClient("UspApi");
         }
 
-        public async Task<IList<SellingPointViewModel>> GetSellingPoints()
+        public async Task<List<SellingPointViewModel>> GetSellingPoints()
         {
             var responseMessage = await _httpClient.GetAsync("/api/sellingpoints");
 
